@@ -10,9 +10,16 @@ function useGetTodos() {
   const client = useSupabase();
   const key = ["todos"];
 
-  return useQuery(key, async () => {
-    return getTodos(client).then((result) => result.data);
-  });
+  return useQuery(
+    key,
+    async () => {
+      return getTodos(client).then((result) => result.data);
+    },
+    {
+      cacheTime: 0,
+      staleTime: 0,
+    }
+  );
 }
 
 export default useGetTodos;
